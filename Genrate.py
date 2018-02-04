@@ -9,12 +9,15 @@ import json
 
 mdPath="./markdown"
 templatesPath="./Templates"
+#博客在VPS中的绝对路径
 blogRootPath="/var/www/html"
-gitAddress="git@github.com:SquareFong/blog-of-squarefong.git"
+#你的markdown在github上的项目地址
+gitAddress="git@github.com:XXXXXXXXXXXXX"
 
+#分别是mysql的地址，用户名，密码，数据库名称
 mysqlAddr="localhost"
 mysqlUser="root"
-mysqlPass="fhc970517"
+mysqlPass="xxxxxxxx"
 mysqlDB="squareBlog"
 
 def publishArticle(Title, Date, Tag, markdownName, outputName):
