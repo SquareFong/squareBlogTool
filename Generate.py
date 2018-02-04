@@ -99,14 +99,12 @@ def updateAll():
         tagChange=False
         if mname in cats:
             if cats[mname] != tag:
-                print(cats[mname] + ' ' + mname)
                 tag=cats[mname]
                 tagChange=True
                 cursor.execute("update files set Tag=\""+ tag +"\" where mName=\"" + mname + "\"")
         if mname in mdFiles:
             mdFiles.remove(mname)
             lastuptime=os.stat(os.path.join(markdowPath,mname)).st_mtime
-            print("tagChange:" + str(tagChange))
             if lastuptime > utime or tagChange:#需要更新的
                 Date=time.strftime('%Y/%m/%d', time.localtime(ctime))
                 markdownName=os.path.join(markdowPath,mname)
@@ -121,7 +119,6 @@ def updateAll():
             outputName=os.path.join(outputName,hname)
             os.remove(outputName)
             cursor.execute("DELETE FROM files WHERE mName=" + mname);
-            print("error")
     #mdFiles剩下的，新增文档，添加之
     for mname in mdFiles:
         markdownName=os.path.join(markdowPath,mname)
@@ -136,10 +133,8 @@ def updateAll():
             tag="default"
         Date=time.strftime('%Y/%m/%d', time.localtime(creattime))
         publishArticle(mname[0:len(mname)-3], Date, tag, markdownName, outputName)
-        print(mname[0:len(mname)-3]+' ' + markdownName + ' '+ outputName)
         ex=str("insert into files VALUES(\"{0}\",\"{1}\",\"{2}\",{3},{4})")
         ex=ex.format(mname,hname,tag,creattime,lastuptime)
-        print(ex)
         cursor.execute(ex)
     db.commit()
     db.close()
