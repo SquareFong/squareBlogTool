@@ -168,7 +168,7 @@ def main(argv):
         print("Invalid arguments, one operation a time")
         return 1
     try:
-        opts, args=getopt.getopt(argv,"iuhr:",["ifile=","ofile="])
+        opts, args=getopt.getopt(argv,"iuhr:")
     except getopt.GetoptError:
         print("this is help test")
         sys.exit(2)
